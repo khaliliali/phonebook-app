@@ -1,0 +1,40 @@
+<mat-card>
+  <form
+    (submit)="onAddContact(contactForm)"
+    #contactForm="ngForm"
+    class="example-form"
+  >
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="firstname"
+        type="text"
+        name="firstname"
+        ngModel
+        #firstname="ngModel"
+      />
+      <!-- <mat-error *ngIf="firstname.invalid">please add Firstname</mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="lasatname"
+        type="text"
+        name="lastname"
+        ngModel
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="mobile" type="tel" name="mobile" ngModel />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="home" type="tel" name="home" ngModel />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="email" type="email" name="email" ngModel />
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">
+      Add Contact
+    </button>
+  </form>
+</mat-card>
