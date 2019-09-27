@@ -23,6 +23,7 @@ export class ContactCreateComponent {
       form.value.home,
       form.value.email
     );
+    // console.log(form.value);
     form.resetForm();
   }
 }

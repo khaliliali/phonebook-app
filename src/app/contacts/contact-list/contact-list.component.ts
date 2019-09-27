@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ContactModel } from '../contacts.model';
@@ -9,31 +9,14 @@ import { ContactsService } from '../contacts.service';
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit {
-  //Contactlist = [
-  // {
-  //   firstname: 'ali',
-  //   lastname: 'khalili',
-  //   mobile: 6654654,
-  //   home: 65465465,
-  //   email: a@a.co
-  // },
-  // {
-  //   firstname: 'reza',
-  //   lastname: 'ahmadi',
-  //   mobile: 6654654,
-  //   home: 65465465,
-  //   email: a@a.co
-  // }
-  //];
-
+export class ContactListComponent implements OnInit, OnDestroy {
   contacts: ContactModel[] = [];
   private contactsSub: Subscription;
 
   constructor(public contactsService: ContactsService) {}
 
   ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
+    this.contactsService.getContacts();
     this.contactsSub = this.contactsService
       .getContactUpdateListener()
       .subscribe((contacts: ContactModel[]) => {
