@@ -1,18 +1,39 @@
 <mat-accordion multi="true" *ngIf="contacts.length > 0">
   <mat-expansion-panel *ngFor="let contact of contacts">
     <mat-expansion-panel-header>
-      {{ contact.firstname }} {{ contact.lastname }}
+      <img
+        mat-card-avatar
+        [src]="contact.imagePath"
+        [alt]="contact.firstname"
+      />
+      <p>{{ contact.firstname }} {{ contact.lastname }}</p>
     </mat-expansion-panel-header>
     <mat-action-row>
-      <p>{{ contact.mobile }}</p>
+      <img
+        class="contact-image"
+        [src]="contact.imagePath"
+        [alt]="contact.firstname"
+      />
       <hr />
-      <p>{{ contact.home }}</p>
+      <p>
+        {{ contact.mobile }}
+      </p>
       <hr />
-      <p>{{ contact.email }}</p>
+      <p>
+        {{ contact.home }}
+      </p>
+      <hr />
+      <p>
+        {{ contact.email }}
+      </p>
     </mat-action-row>
     <mat-action-row>
-      <button mat-button color="primary">EDIT</button>
-      <button mat-button color="warn">DELETE</button>
+      <a mat-button color="primary" [routerLink]="['/edit', contact.id]">
+        <mat-icon color="white">edit</mat-icon>
+      </a>
+      <button mat-button color="warn" (click)="onDelete(contact.id)">
+        <mat-icon color="white">delete_sweep</mat-icon>
+      </button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

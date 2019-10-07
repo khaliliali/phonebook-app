@@ -1,10 +1,27 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const contactsRoutes = require('./routes/contacts');
 
 const app = express();
 
+mongoose
+  .connect(
+    'mongodb+srv://ali:0mfCNgfFe45q49RP@cluster0-psvzf.mongodb.net/node-angular?retryWrites=true&w=majority',
+    { useUnifiedTopology: true, useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log('Connected to Database! Hooorrraaayyyyy');
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/images', express.static(path.join('backend/images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,37 +36,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/contacts', (req, res, next) => {
-  const contact = req.body;
-  console.log(contact);
-  res.status(201).json({
-    message: 'Contacts added successfully'
-  });
-});
-
-app.get('/api/posts', (req, res, next) => {
-  const contacts = [
-    {
-      id: 'fadf12421l',
-      firstname: 'ali',
-      lastname: 'ali',
-      mobile: 654654,
-      home: 654654,
-      email: 'a@a.co'
-    },
-    {
-      id: 'fadf12421l',
-      firstname: 'ali',
-      lastname: 'ali',
-      mobile: 654654,
-      home: 654654,
-      email: 'a@a.co'
-    }
-  ];
-  res.status(200).json({
-    message: 'contacts fetched successfully!',
-    contacts: contacts
-  });
-});
+app.use('/api/contacts', contactsRoutes);
 
 module.exports = app;

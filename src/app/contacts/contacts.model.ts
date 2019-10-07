@@ -5,4 +5,5 @@ export interface ContactModel {
   mobile: number;
   home: number;
   email: string;
+  imagePath: string;
 }

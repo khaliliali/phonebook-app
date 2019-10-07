@@ -24,6 +24,10 @@ export class ContactListComponent implements OnInit, OnDestroy {
       });
   }
 
+  onDelete(contactId: string) {
+    this.contactsService.deleteContact(contactId);
+  }
+
   ngOnDestroy() {
     this.contactsSub.unsubscribe();
   }
