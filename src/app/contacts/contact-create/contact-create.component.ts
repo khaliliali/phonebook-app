@@ -9,7 +9,7 @@ import { mimeType } from './mime-type.validator';
 @Component({
   selector: 'app-contact-create',
   templateUrl: './contact-create.component.html',
-  styleUrls: ['./contact-create.component.css']
+  styleUrls: ['./contact-create.component.scss']
 })
 export class ContactCreateComponent implements OnInit {
   contact: ContactModel;

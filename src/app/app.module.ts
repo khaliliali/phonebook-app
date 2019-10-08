@@ -9,7 +9,9 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatIconModule
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +19,14 @@ import { AppComponent } from './app.component';
 import { ContactCreateComponent } from './contacts/contact-create/contact-create.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
+import { SidenavComponent } from './sidenave/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactCreateComponent,
     HeaderComponent,
+    SidenavComponent,
+    ContactCreateComponent,
     ContactListComponent
   ],
   imports: [
@@ -37,7 +41,9 @@ import { ContactListComponent } from './contacts/contact-list/contact-list.compo
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
