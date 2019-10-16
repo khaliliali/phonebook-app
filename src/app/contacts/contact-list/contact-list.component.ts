@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { ContactModel } from '../contacts.model';
 import { ContactsService } from '../contacts.service';
-import { MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',

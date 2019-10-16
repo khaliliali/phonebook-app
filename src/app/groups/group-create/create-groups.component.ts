@@ -22,5 +22,6 @@ export class CreateGroupComponent {
       return;
     }
     this.groupsService.addGroup(form.value.title);
+    this.dialogRef.close();
   }
 }

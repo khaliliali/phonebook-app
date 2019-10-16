@@ -1,7 +1,7 @@
 <form (submit)="addGroup(groupForm)" #groupForm="ngForm">
   <h1 mat-dialog-title>My Groups</h1>
   <div mat-dialog-content>
-    <p>What's your group's name?</p>
+    <p>What's your group's Title?</p>
     <mat-form-field>
       <input
         matInput
@@ -11,8 +11,8 @@
         ngModel
         required
       />
-      <mat-hint>please choose a name for your group</mat-hint>
-      <mat-error *ngIf="title.invalid">title couldn't be empty!</mat-error>
+      <mat-hint>choose your group title.</mat-hint>
+      <mat-error *ngIf="title.invalid">Title couldn't be empty!</mat-error>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>

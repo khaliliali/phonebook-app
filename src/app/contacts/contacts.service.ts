@@ -139,7 +139,7 @@ export class ContactsService {
           mobile,
           home,
           email,
-          imagePath: '' //response.imagePath
+          imagePath: '' // response.imagePath
         };
         updatedContact[oldContactIndex] = contact;
         this.contactsUpdated.next([...this.contacts]);
