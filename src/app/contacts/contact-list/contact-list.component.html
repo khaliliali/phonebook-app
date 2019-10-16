@@ -1,12 +1,18 @@
-<mat-accordion multi="true" *ngIf="contacts.length > 0">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="contacts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let contact of contacts">
     <mat-expansion-panel-header>
-      <img
-        mat-card-avatar
-        [src]="contact.imagePath"
-        [alt]="contact.firstname"
-      />
-      <p>{{ contact.firstname }} {{ contact.lastname }}</p>
+      <mat-panel-title>
+        <img
+          mat-card-avatar
+          [src]="contact.imagePath"
+          [alt]="contact.firstname"
+        />
+        <p>{{ contact.firstname }} {{ contact.lastname }}</p>
+      </mat-panel-title>
+      <mat-panel-description class="description-style">
+        {{ contact.mobile }}
+      </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-action-row>
       <img
@@ -14,18 +20,17 @@
         [src]="contact.imagePath"
         [alt]="contact.firstname"
       />
-      <hr />
-      <p>
-        {{ contact.mobile }}
-      </p>
-      <hr />
-      <p>
-        {{ contact.home }}
-      </p>
-      <hr />
-      <p>
-        {{ contact.email }}
-      </p>
+      <mat-tab-group headerPosition="below" style="align-content: center">
+        <mat-tab style="align-content: center" label="email">
+          {{ contact.email }}
+        </mat-tab>
+        <mat-tab style="align-content: center" label="mobile">
+          {{ contact.mobile }}
+        </mat-tab>
+        <mat-tab style="align-content: center" label="home">
+          {{ contact.home }}
+        </mat-tab>
+      </mat-tab-group>
     </mat-action-row>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/edit', contact.id]">
@@ -37,6 +42,17 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p class="info-text mat-body-1" *ngIf="contacts.length <= 0">
+<p class="info-text mat-body-1" *ngIf="contacts.length <= 0 && !isLoading">
   No contacts added yet!
 </p>
+
+<div class="example-button-row">
+  <button
+    (button)="addButton()"
+    color="accent"
+    mat-raised-button
+    [routerLink]="['/create']"
+  >
+    Add New Contact
+  </button>
+</div>

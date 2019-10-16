@@ -1,5 +1,11 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-card>
-  <form [formGroup]="form" (submit)="onSaveContact()" class="example-form">
+  <form
+    [formGroup]="form"
+    (submit)="onSaveContact()"
+    class="example-form"
+    *ngIf="!isLoading"
+  >
     <div
       class="image-preview"
       *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid"
@@ -13,6 +19,7 @@
         formControlName="firstname"
         placeholder="firstname"
       />
+      <mat-hint>write firstname</mat-hint>
       <mat-error *ngIf="form.get('firstname').invalid"
         >please add Firstname</mat-error
       >
@@ -24,6 +31,7 @@
         formControlName="lastname"
         placeholder="lastname"
       />
+      <mat-hint>write lastname</mat-hint>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input
@@ -32,12 +40,14 @@
         formControlName="mobile"
         placeholder="mobile"
       />
+      <mat-hint>just numbers!</mat-hint>
       <mat-error *ngIf="form.get('mobile').invalid"
         >please add mobile</mat-error
       >
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input matInput type="tel" formControlName="home" placeholder="home" />
+      <mat-hint>just numbers!</mat-hint>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input
@@ -46,16 +56,22 @@
         formControlName="email"
         placeholder="email"
       />
+      <mat-hint>correct format: example@domain.com</mat-hint>
       <mat-error *ngIf="form.get('email').invalid">please add email</mat-error>
     </mat-form-field>
-    <div>
+    <div class="image-style">
       <button mat-stroked-button type="button" (click)="filePicker.click()">
         Pick Image
       </button>
-      <input type="file" #filePicker (change)="onImagePicked($event)" />
+      <input type="file" #filePicker (change)="onImagePicked($event)" /> <br />
+      <mat-hint>correct Formats: jpg, jpeg & png. </mat-hint>
     </div>
+
     <button type="submit" mat-raised-button color="primary">
       Add Contact
+      <mat-icon>
+        <mat-spinner color="primary" diameter="20"></mat-spinner>
+      </mat-icon>
     </button>
   </form>
 </mat-card>

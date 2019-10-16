@@ -15,6 +15,7 @@ export class ContactCreateComponent implements OnInit {
   contact: ContactModel;
   form: FormGroup;
   imagePreview: string;
+  isLoading = false;
   private mode = 'create';
   private contactId: string;
 
@@ -40,10 +41,12 @@ export class ContactCreateComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('contactId')) {
         this.mode = 'edit';
+        this.isLoading = true;
         this.contactId = paramMap.get('contactId');
         this.contactsService
           .getContact(this.contactId)
           .subscribe(contactData => {
+            this.isLoading = false;
             this.contact = {
               id: contactData._id,
               firstname: contactData.firstname,
@@ -84,6 +87,7 @@ export class ContactCreateComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.isLoading = true;
     if (this.mode === 'create') {
       this.contactsService.addContact(
         this.form.value.firstname,

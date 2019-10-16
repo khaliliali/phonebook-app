@@ -2,15 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { ContactModel } from './contacts.model';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 
 @Injectable({ providedIn: 'root' })
 export class ContactsService {
   private contacts: ContactModel[] = [];
   private contactsUpdated = new Subject<ContactModel[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
   getContacts() {
     this.http
@@ -81,10 +87,13 @@ export class ContactsService {
           imagePath: responseData.contact.imagePath
         };
         this.contacts.push(contact);
-        console.log('contact ', responseData);
-
         this.contactsUpdated.next([...this.contacts]);
-        console.log('contacts ', this.contacts);
+        this.router.navigate(['/']);
+        this.openSnackBar('Contact added', 'edit')
+          .onAction()
+          .subscribe(() => {
+            this.router.navigate(['/']);
+          });
       });
   }
 
@@ -134,6 +143,12 @@ export class ContactsService {
         };
         updatedContact[oldContactIndex] = contact;
         this.contactsUpdated.next([...this.contacts]);
+        this.router.navigate(['/']);
+        this.openSnackBar('Contact added', 'Add New')
+          .onAction()
+          .subscribe(() => {
+            this.router.navigate(['/create']);
+          });
       });
   }
 
@@ -146,6 +161,20 @@ export class ContactsService {
         );
         this.contacts = contactsUpdated;
         this.contactsUpdated.next([...this.contacts]);
+        this.openSnackBar('Contact added', 'Undo')
+          .onAction()
+          .subscribe(() => {
+            this.router.navigate(['/']);
+          });
       });
+  }
+
+  openSnackBar(
+    message: string,
+    action: string
+  ): MatSnackBarRef<SimpleSnackBar> {
+    return this._snackBar.open(message, action, {
+      duration: 4000
+    });
   }
 }

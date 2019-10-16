@@ -11,7 +11,12 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTabsModule,
+  MatMenuModule,
+  MatDialogModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +25,8 @@ import { ContactCreateComponent } from './contacts/contact-create/contact-create
 import { HeaderComponent } from './header/header.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { SidenavComponent } from './sidenave/sidenav.component';
+import { CreateGroupComponent } from './groups/group-create/create-groups.component';
+import { ListGroupComponent } from './groups/group-list/list-groups.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,9 @@ import { SidenavComponent } from './sidenave/sidenav.component';
     HeaderComponent,
     SidenavComponent,
     ContactCreateComponent,
-    ContactListComponent
+    ContactListComponent,
+    CreateGroupComponent,
+    ListGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +52,17 @@ import { SidenavComponent } from './sidenave/sidenav.component';
     MatExpansionModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
+  entryComponents: [CreateGroupComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// entryComponents: [CreateGroupComponent],

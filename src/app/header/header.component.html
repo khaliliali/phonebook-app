@@ -5,12 +5,15 @@
   <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="spacer"></span>
-  <ul>
-    <li>
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">
-        New Contact
-      </a>
-    </li>
-  </ul>
+  <span class="toolbar-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/create" routerLinkActive="mat-accent">
+      <!-- (click)="openAddContactsDialog()" -->
+      New Contact
+    </button>
+    <button mat-menu-item>New Group</button>
+  </mat-menu>
 </mat-toolbar>

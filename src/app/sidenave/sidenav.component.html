@@ -5,19 +5,21 @@
     [opened]="!isScreenSmall()"
     [mode]="isScreenSmall() ? 'over' : 'side'"
   >
-    <mat-toolbar color="primary">Contacts</mat-toolbar>
-    <mat-list>
-      <mat-list-item>Family</mat-list-item>
-      <mat-list-item>Colleagues</mat-list-item>
-      <mat-list-item>Friends</mat-list-item>
-    </mat-list>
+    <mat-toolbar color="primary">My Groups</mat-toolbar>
+    <mat-nav-list>
+      <app-list-groups></app-list-groups>
+    </mat-nav-list>
+    <li>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="openDialog()"
+        class="btn-style"
+      >
+        Add Group
+      </button>
+    </li>
   </mat-sidenav>
   <app-header (click)="sidenav.toggle()"></app-header>
   <router-outlet></router-outlet>
-  <!-- <app-toolbar (click)="sidenav.toggle()"></app-toolbar> -->
-  <!-- <div class="app-sidenav-content">
-    <button type="button" mat-button (click)="sidenav.toggle()">
-      open sidenav
-    </button>
-  </div> -->
 </mat-sidenav-container>
